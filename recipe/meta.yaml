@@ -1,6 +1,6 @@
 {% set name = "PySpice" %}
-{% set version = "1.3.2" %}
-{% set sha256 = "d64e437f55a879c98e34b2fe214270738a0c087427ac66f989db76d016cab402" %}
+{% set version = "1.4.1" %}
+{% set sha256 = "69e54272c8919eede634aa326c8e190be65931acab1ca61825131e7f5574ca9b" %}
 
 package:
   name: {{ name|lower }}
@@ -71,7 +71,7 @@ about:
   license_family: GPL
   license_file: LICENSE.txt
 
-  summary: 'Simulate electronic circuit using Python and the Ngspice / Xyce simulators'
+  summary: Simulate electronic circuit using Python and the Ngspice / Xyce simulators
   description: |
     PySpice is a free and open source Python module which interfaces Python to
     the Ngspice and Xyce circuit simulators. PySpice implements a Ngspice
