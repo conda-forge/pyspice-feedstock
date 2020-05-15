@@ -10,11 +10,6 @@ source:
   url: https://github.com/FabriceSalvaire/PySpice/archive/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
-  patches:
-    # From the commit immediately after tag v1.3.2.
-    # Fixes a typo in setup_data.py
-    - patches/f7157ece.patch
-
 build:
   number: 0
   skip: true  # [win]
