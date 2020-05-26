@@ -10,6 +10,11 @@ source:
   url: https://github.com/FabriceSalvaire/PySpice/archive/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
+  patches:
+    # This fixes an issue in the test suite.
+    # Test were failing on Windows due to line ending mismatches.
+    - patches/fix-netlist-linesep.patch
+
 build:
   number: 1
   script:
