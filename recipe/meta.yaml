@@ -15,6 +15,9 @@ source:
     # Test were failing on Windows due to line ending mismatches.
     - patches/fix-netlist-linesep.patch
 
+    # This will probably be fixed in the next release
+    - patches/fix-check-install-NameError.patch
+
 build:
   number: 1
   script:
