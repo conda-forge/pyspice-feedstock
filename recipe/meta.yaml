@@ -34,7 +34,7 @@ requirements:
     - scipy
     - matplotlib-base
     - ply
-    - ngspice
+    - ngspice-lib
 
 test:
   imports:
