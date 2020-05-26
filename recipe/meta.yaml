@@ -51,7 +51,7 @@ test:
   source_files:
     - unit-test
   commands:
-    - python -c 'import PySpice; print(PySpice.__version__)'
+    - python -c "import PySpice; print(PySpice.__version__)"
     - pytest unit-test
 
 about:
