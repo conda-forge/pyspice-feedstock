@@ -15,11 +15,8 @@ build:
   script:
     # Create __init__.py this way instead of running tasks.release.update_git_sha(),
     # which doesn't work because we're not using a git repo.
-    - sed -i.bak s/@VERSION@/{{ version }}/g PySpice/__init__.py.in
-    - sed -i.bak s/@GIT_TAG@/v{{ version }}/g PySpice/__init__.py.in
-    - sed -i.bak s/@GIT_SHA@/UNSPECIFIED/g PySpice/__init__.py.in
-    - rm PySpice/__init__.py.in.bak
-    - mv PySpice/__init__.py.in PySpice/__init__.py
+    - "{{ PYTHON }} ${RECIPE_DIR}/write_init.py {{ version }}"  # [unix]
+    - "{{ PYTHON }} %RECIPE_DIR%\\write_init.py {{ version }}"  # [win]
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -54,6 +51,7 @@ test:
   source_files:
     - unit-test
   commands:
+    - python -c 'import PySpice; print(PySpice.__version__)'
     - pytest unit-test
 
 about:
