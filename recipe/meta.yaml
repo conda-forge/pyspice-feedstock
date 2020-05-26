@@ -59,6 +59,10 @@ test:
     - python -c "import PySpice; print(PySpice.__version__)"
     - pytest unit-test
 
+    # Note: In the next version of PySpice, this command will be renamed:
+    # pyspice_post_installation --check-install
+    - ngspice-check-installation
+
 about:
   home: https://pyspice.fabrice-salvaire.fr
   doc_url: https://pyspice.fabrice-salvaire.fr
