@@ -11,8 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
-  skip: true  # [win]
+  number: 1
   script:
     # Create __init__.py this way instead of running tasks.release.update_git_sha(),
     # which doesn't work because we're not using a git repo.
