@@ -25,6 +25,7 @@ build:
     # which doesn't work because we're not using a git repo.
     - "{{ PYTHON }} ${RECIPE_DIR}/write_init.py {{ version }}"  # [unix]
     - "{{ PYTHON }} %RECIPE_DIR%\\write_init.py {{ version }}"  # [win]
+
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
