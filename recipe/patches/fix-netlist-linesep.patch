@@ -1,0 +1,17 @@
+diff --git a/unit-test/Spice/test_Netlist.py b/unit-test/Spice/test_Netlist.py
+index f2f2ad3..f5fec28 100644
+--- a/unit-test/Spice/test_Netlist.py
++++ b/unit-test/Spice/test_Netlist.py
+@@ -56,8 +56,10 @@ class TestNetlist(unittest.TestCase):
+     ##############################################
+ 
+     def _test_spice_declaration(self, circuit, spice_declaration):
+-
+-        self.assertEqual(str(circuit), spice_declaration[1:])
++        # Ignore line endings and blank lines
++        circuit_lines = [*filter(None, str(circuit).splitlines(False))]
++        expected_lines = [*filter(None, spice_declaration.splitlines(False))]
++        self.assertEqual(circuit_lines, expected_lines)
+ 
+     ##############################################
+ 

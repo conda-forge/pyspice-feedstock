@@ -10,17 +10,22 @@ source:
   url: https://github.com/FabriceSalvaire/PySpice/archive/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
+  patches:
+    # This fixes an issue in the test suite.
+    # Test were failing on Windows due to line ending mismatches.
+    - patches/fix-netlist-linesep.patch
+
+    # This will probably be fixed in the next release
+    - patches/fix-check-install-NameError.patch
+
 build:
-  number: 0
-  skip: true  # [win]
+  number: 1
   script:
     # Create __init__.py this way instead of running tasks.release.update_git_sha(),
     # which doesn't work because we're not using a git repo.
-    - sed -i.bak s/@VERSION@/{{ version }}/g PySpice/__init__.py.in
-    - sed -i.bak s/@GIT_TAG@/v{{ version }}/g PySpice/__init__.py.in
-    - sed -i.bak s/@GIT_SHA@/UNSPECIFIED/g PySpice/__init__.py.in
-    - rm PySpice/__init__.py.in.bak
-    - mv PySpice/__init__.py.in PySpice/__init__.py
+    - "{{ PYTHON }} ${RECIPE_DIR}/write_init.py {{ version }}"  # [unix]
+    - "{{ PYTHON }} %RECIPE_DIR%\\write_init.py {{ version }}"  # [win]
+
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -35,7 +40,7 @@ requirements:
     - scipy
     - matplotlib-base
     - ply
-    - ngspice
+    - ngspice-lib
 
 test:
   imports:
@@ -55,7 +60,12 @@ test:
   source_files:
     - unit-test
   commands:
+    - python -c "import PySpice; print(PySpice.__version__)"
     - pytest unit-test
+
+    # Note: In the next version of PySpice, this command will be renamed:
+    # pyspice_post_installation --check-install
+    - ngspice-check-installation
 
 about:
   home: https://pyspice.fabrice-salvaire.fr

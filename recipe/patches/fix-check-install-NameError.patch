@@ -1,0 +1,13 @@
+diff --git a/bin/ngspice-check-installation b/bin/ngspice-check-installation
+index 0257402..16bdbcd 100755
+--- a/bin/ngspice-check-installation
++++ b/bin/ngspice-check-installation
+@@ -65,7 +65,7 @@ print(message.format(NgSpiceShared))
+ 
+ if ConfigInstall.OS.on_windows:
+     print('OS is Windows')
+-    library = NGSPICE_PATH.LIBRARY_PATH
++    library = NgSpiceShared.LIBRARY_PATH
+ elif ConfigInstall.OS.on_osx:
+     print('OS is OSX')
+     library = 'ngspice'
