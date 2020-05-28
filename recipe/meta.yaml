@@ -1,31 +1,22 @@
 {% set name = "PySpice" %}
-{% set version = "1.4.2" %}
-{% set sha256 = "e8f8dfff36d1c79791dc9d951b32195cf5134b34593ab81d324c195c6428cc82" %}
+{% set version = "1.4.3" %}
+#{% set sha256 = "" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/FabriceSalvaire/PySpice/archive/v{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  #url: https://github.com/FabriceSalvaire/PySpice/archive/v{{ version }}.tar.gz
+  #sha256: {{ sha256 }}
 
-  patches:
-    # This fixes an issue in the test suite.
-    # Test were failing on Windows due to line ending mismatches.
-    - patches/fix-netlist-linesep.patch
-
-    # This will probably be fixed in the next release
-    - patches/fix-check-install-NameError.patch
+  # Quick test for 1.4.3, even though there's no tag yet.
+  git_url: https://github.com/FabriceSalvaire/PySpice
+  git_rev: 910c05389ef13ea6c6b9b4cd58a55d798e7695d2
 
 build:
-  number: 2
+  number: 0
   script:
-    # Create __init__.py this way instead of running tasks.release.update_git_sha(),
-    # which doesn't work because we're not using a git repo.
-    - "{{ PYTHON }} ${RECIPE_DIR}/write_init.py {{ version }}"  # [unix]
-    - "{{ PYTHON }} %RECIPE_DIR%\\write_init.py {{ version }}"  # [win]
-
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -62,10 +53,7 @@ test:
   commands:
     - python -c "import PySpice; print(PySpice.__version__)"
     - pytest unit-test
-
-    # Note: In the next version of PySpice, this command will be renamed:
-    # pyspice_post_installation --check-install
-    - ngspice-check-installation
+    - pyspice_post_installation --check-install
 
 about:
   home: https://pyspice.fabrice-salvaire.fr
