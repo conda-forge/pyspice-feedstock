@@ -19,7 +19,7 @@ source:
     - patches/fix-check-install-NameError.patch
 
 build:
-  number: 1
+  number: 2
   script:
     # Create __init__.py this way instead of running tasks.release.update_git_sha(),
     # which doesn't work because we're not using a git repo.
@@ -34,12 +34,12 @@ requirements:
     - pip
   run:
     - python
-    - pyyaml
-    - cffi
-    - numpy
-    - scipy
-    - matplotlib-base
-    - ply
+    - pyyaml >=5.3
+    - cffi >=1.14
+    - numpy >=1.18
+    - scipy >=1.4
+    - matplotlib-base >=3.1
+    - ply >=3.11
     - ngspice-lib
 
 test:
