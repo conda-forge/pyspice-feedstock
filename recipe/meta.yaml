@@ -48,6 +48,7 @@ test:
     - PySpice.Unit
   requires:
     - pytest
+    - requests
   source_files:
     - unit-test
   commands:
