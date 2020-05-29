@@ -53,7 +53,7 @@ test:
   commands:
     - python -c "import PySpice; print(PySpice.__version__)"
     - pytest unit-test
-    - pyspice_post_installation --check-install
+    - pyspice-post-installation --check-install
 
 about:
   home: https://pyspice.fabrice-salvaire.fr
