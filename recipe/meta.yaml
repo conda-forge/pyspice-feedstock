@@ -17,7 +17,9 @@ source:
 build:
   number: 0
   script:
-    - {{ PYTHON }} -m pip install . -vv
+    # Note: On Windows, pip handles console_scripts in a strange way, so we can't use it.
+    #- {{ PYTHON }} -m pip install . -vv
+    - {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt
 
 requirements:
   host:
