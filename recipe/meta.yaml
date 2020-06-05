@@ -12,7 +12,8 @@ source:
 
   # Quick test for 1.4.3, even though there's no tag yet.
   git_url: https://github.com/FabriceSalvaire/PySpice
-  git_rev: 9f0846bf60e481945ad29ba0be294f2d69a2af10
+  # git_rev: 9f0846bf60e481945ad29ba0be294f2d69a2af10
+  git_rev: 06289df739c1a7d10e36c1e4f7788517e970d2d6
 
 build:
   number: 0
@@ -23,17 +24,17 @@ build:
 
 requirements:
   host:
-    - python
+    - python >=3.7
     - pip
   run:
-    - python
+    - python >=3.7
     - pyyaml >=5.3
     - cffi >=1.14
     - numpy >=1.18
     - scipy >=1.4
     - matplotlib-base >=3.1
     - ply >=3.11
-    - ngspice-lib
+    - ngspice-lib >=32  # ???
 
 test:
   imports:
@@ -50,13 +51,21 @@ test:
     - PySpice.Unit
   requires:
     - pytest
-    - requests
+    - requests  # required ???
+    - pyterate >=2.1.5
+    - pint
   source_files:
+    - examples
     - unit-test
   commands:
     - python -c "import PySpice; print(PySpice.__version__)"
     - pytest unit-test
     - pyspice-post-installation --check-install
+    # ngspice complains: Note: can't find init file
+    # examples/operational-amplifier/astable.py FAILS
+    #   Error: circuit not parsed.
+    - PySpiceLibraryPath=$PWD/examples/libraries pyterate --config=./examples/Settings.py --only-run  #[unix]
+    # Fixme: - ??? pyterate --config=???\examples\Settings.py --only-run  #[win]
 
 about:
   home: https://pyspice.fabrice-salvaire.fr
