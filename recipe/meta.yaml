@@ -64,7 +64,7 @@ test:
     # ngspice complains: Note: can't find init file
     # examples/operational-amplifier/astable.py FAILS
     # Error: circuit not parsed
-    - conda install -c fabricesalvaire pyterate
+    - conda install --yes -c fabricesalvaire pyterate
     - PySpiceLibraryPath=$PWD/examples/libraries pyterate --config=./examples/Settings.py --only-run  # [unix]
     # Fixme: - ??? pyterate --config=???\examples\Settings.py --only-run  # [win]
 
