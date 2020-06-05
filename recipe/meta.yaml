@@ -24,10 +24,10 @@ build:
 
 requirements:
   host:
-    - python >=3.7
+    - python
     - pip
   run:
-    - python >=3.7
+    - python
     - pyyaml >=5.3
     - cffi >=1.14
     - numpy >=1.18
@@ -63,7 +63,7 @@ test:
     - pyspice-post-installation --check-install
     # ngspice complains: Note: can't find init file
     # examples/operational-amplifier/astable.py FAILS
-    #   Error: circuit not parsed.
+    # Error: circuit not parsed.
     - PySpiceLibraryPath=$PWD/examples/libraries pyterate --config=./examples/Settings.py --only-run  #[unix]
     # Fixme: - ??? pyterate --config=???\examples\Settings.py --only-run  #[win]
 
