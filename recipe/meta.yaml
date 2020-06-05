@@ -13,7 +13,7 @@ source:
   # Quick test for 1.4.3, even though there's no tag yet.
   git_url: https://github.com/FabriceSalvaire/PySpice
   # git_rev: 9f0846bf60e481945ad29ba0be294f2d69a2af10
-  git_rev: 06289df739c1a7d10e36c1e4f7788517e970d2d6
+  git_rev: b6c03df0079746b1d494dfef4234f7fddc0b9291
 
 build:
   number: 0
@@ -66,7 +66,8 @@ test:
     # Error: circuit not parsed
     - conda install --yes -c fabricesalvaire pyterate
     - PySpiceLibraryPath=$PWD/examples/libraries pyterate --config=./examples/Settings.py --only-run  # [unix]
-    # Fixme: - ??? pyterate --config=???\examples\Settings.py --only-run  # [win]
+    - setx PySpiceLibraryPath %SRC_DIR%\examples\libraries  # [win]
+    - pyterate --config=%SRC_DIR%\examples\Settings.py --only-run  # [win]
 
 about:
   home: https://pyspice.fabrice-salvaire.fr
