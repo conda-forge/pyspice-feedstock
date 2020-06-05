@@ -64,8 +64,8 @@ test:
     # ngspice complains: Note: can't find init file
     # examples/operational-amplifier/astable.py FAILS
     # Error: circuit not parsed.
-    - PySpiceLibraryPath=$PWD/examples/libraries pyterate --config=./examples/Settings.py --only-run  #[unix]
-    # Fixme: - ??? pyterate --config=???\examples\Settings.py --only-run  #[win]
+    - PySpiceLibraryPath=$PWD/examples/libraries pyterate --config=./examples/Settings.py --only-run  # [unix]
+    # Fixme: - ??? pyterate --config=???\examples\Settings.py --only-run  # [win]
 
 about:
   home: https://pyspice.fabrice-salvaire.fr
