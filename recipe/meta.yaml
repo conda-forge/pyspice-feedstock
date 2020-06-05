@@ -52,7 +52,7 @@ test:
   requires:
     - pytest
     - requests  # required ???
-    - pyterate >=2.1.5
+    # - pyterate >=2.1.5
     - pint
   source_files:
     - examples
@@ -63,7 +63,8 @@ test:
     - pyspice-post-installation --check-install
     # ngspice complains: Note: can't find init file
     # examples/operational-amplifier/astable.py FAILS
-    # Error: circuit not parsed.
+    # Error: circuit not parsed
+    - conda install -c fabricesalvaire pyterate
     - PySpiceLibraryPath=$PWD/examples/libraries pyterate --config=./examples/Settings.py --only-run  # [unix]
     # Fixme: - ??? pyterate --config=???\examples\Settings.py --only-run  # [win]
 
