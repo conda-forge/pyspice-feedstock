@@ -1,18 +1,18 @@
 {% set name = "PySpice" %}
 {% set version = "1.4.3_beta0" %}
-{% set sha256 = "366094c2a10f05251692fc6156adb8ccacd811658a88f3a0682485a6a7f92c16" %}
+{% set sha256 = "" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/FabriceSalvaire/PySpice/archive/v{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  # url: https://github.com/FabriceSalvaire/PySpice/archive/v{{ version }}.tar.gz
+  # sha256: {{ sha256 }}
 
   # Quick test for 1.4.3, even though there's no tag yet.
-  # git_url: https://github.com/FabriceSalvaire/PySpice
-  # git_rev: 
+  git_url: https://github.com/FabriceSalvaire/PySpice
+  git_rev: e3bc718
 
 build:
   number: 0
@@ -65,6 +65,8 @@ test:
     - pyspice-post-installation --check-install
     - setx PySpiceLibraryPath %SRC_DIR%\examples\libraries  # [win]
     - setx PYTHONIOENCODING utf_8  # [win]
+    - dir C:\Miniconda  # [win]
+    - dir %PREFIX%\lib\site-packages\PySpice\Spice\NgSpice  # [win]
     - invoke test.run-examples
 
     #! - conda install --yes -c fabricesalvaire pyterate
