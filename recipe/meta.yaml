@@ -1,6 +1,6 @@
 {% set name = "PySpice" %}
 {% set version = "1.4.3_beta0" %}
-{% set sha256 = "0b15d515e289c70c4dd09e9f78f29312bffda7c16fa55f659b5ece3552f1856f" %}
+{% set sha256 = "1454a97f6e53f3f00e177714c751be44b64ab8ac1b9dd532b21f9dbeda142928" %}
 
 package:
   name: {{ name|lower }}
@@ -63,12 +63,18 @@ test:
     - python -c "import PySpice; print(PySpice.__version__)"
     - pytest unit-test
     - pyspice-post-installation --check-install
-    - conda install --yes -c fabricesalvaire pyterate
     - setx PySpiceLibraryPath %SRC_DIR%\examples\libraries  # [win]
-    # - pyterate --config=%SRC_DIR%\examples\Settings.py --only-run  # [win]
-    # - PySpiceLogLevel=DEBUG PySpiceLibraryPath=$PWD/examples/libraries pyterate --config=./examples/Settings.py --only-run  # [unix]
     - setx PYTHONIOENCODING utf_8  # [win]
     - invoke test.run-examples
+
+    #! - conda install --yes -c fabricesalvaire pyterate
+    #! - pyterate --config=%SRC_DIR%\examples\Settings.py --only-run  # [win]
+    #! - PySpiceLogLevel=DEBUG PySpiceLibraryPath=$PWD/examples/libraries pyterate --config=./examples/Settings.py --only-run  # [unix]
+
+    # py3.6 TypeError: __init__() got an unexpected keyword argument 'capture_output'
+    # can test env CI azure
+    # OSX: examples/ngspice-shared/ngspice-interpreter.py
+    #   Error: ngspice.dll cannot recover and awaits to be detached
 
 about:
   home: https://pyspice.fabrice-salvaire.fr
