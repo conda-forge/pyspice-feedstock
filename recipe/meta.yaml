@@ -1,6 +1,6 @@
 {% set name = "PySpice" %}
 {% set version = "1.4.3_beta0" %}
-{% set sha256 = "1454a97f6e53f3f00e177714c751be44b64ab8ac1b9dd532b21f9dbeda142928" %}
+{% set sha256 = "43c96ca8094c2bf5238acea090c190dc38f55991f2c7860a96acdfa313cac82d" %}
 
 package:
   name: {{ name|lower }}
