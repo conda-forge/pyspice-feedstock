@@ -1,19 +1,18 @@
 {% set name = "PySpice" %}
-{% set version = "1.4.3" %}
-#{% set sha256 = "" %}
+{% set version = "1.4.3-beta0" %}
+{% set sha256 = "b5f1b239b31b7bb9029ff9276c8fafae1904b68f70cb5a809e01570ba846e9db" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  #url: https://github.com/FabriceSalvaire/PySpice/archive/v{{ version }}.tar.gz
-  #sha256: {{ sha256 }}
+  url: https://github.com/FabriceSalvaire/PySpice/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
 
   # Quick test for 1.4.3, even though there's no tag yet.
-  git_url: https://github.com/FabriceSalvaire/PySpice
-  # git_rev: 9f0846bf60e481945ad29ba0be294f2d69a2af10
-  git_rev: 132089fa98dc7acc5bb1416ddb6bc761ae3fdd8f
+  # git_url: https://github.com/FabriceSalvaire/PySpice
+  # git_rev: 
 
 build:
   number: 0
@@ -50,10 +49,11 @@ test:
     - PySpice.Tools
     - PySpice.Unit
   requires:
+    - invoke
+    - pint
     - pytest
     - requests  # required ???
     # - pyterate >=2.1.5
-    - pint
   source_files:
     - examples
     - unit-test
@@ -61,13 +61,12 @@ test:
     - python -c "import PySpice; print(PySpice.__version__)"
     - pytest unit-test
     - pyspice-post-installation --check-install
-    # ngspice complains: Note: can't find init file
-    # examples/operational-amplifier/astable.py FAILS
-    # Error: circuit not parsed
     - conda install --yes -c fabricesalvaire pyterate
     - setx PySpiceLibraryPath %SRC_DIR%\examples\libraries  # [win]
-    - pyterate --config=%SRC_DIR%\examples\Settings.py --only-run  # [win]
-    - PySpiceLogLevel=DEBUG PySpiceLibraryPath=$PWD/examples/libraries pyterate --config=./examples/Settings.py --only-run  # [unix]
+    # - pyterate --config=%SRC_DIR%\examples\Settings.py --only-run  # [win]
+    # - PySpiceLogLevel=DEBUG PySpiceLibraryPath=$PWD/examples/libraries pyterate --config=./examples/Settings.py --only-run  # [unix]
+    - setx PYTHONIOENCODING utf_8  # [win]
+    - invoke test.run-examples
 
 about:
   home: https://pyspice.fabrice-salvaire.fr
