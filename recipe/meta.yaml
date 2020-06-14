@@ -62,11 +62,11 @@ test:
   commands:
     - python -c "import PySpice; print(PySpice.__version__)"
     - pytest unit-test
+    - dir C:\Miniconda  # [win]
+    - dir %PREFIX%\lib\site-packages\PySpice\Spice\NgSpice  # [win]
     - pyspice-post-installation --check-install
     - setx PySpiceLibraryPath %SRC_DIR%\examples\libraries  # [win]
     - setx PYTHONIOENCODING utf_8  # [win]
-    - dir C:\Miniconda  # [win]
-    - dir %PREFIX%\lib\site-packages\PySpice\Spice\NgSpice  # [win]
     - invoke test.run-examples
 
     #! - conda install --yes -c fabricesalvaire pyterate
