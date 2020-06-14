@@ -57,6 +57,8 @@ test:
   source_files:
     - examples
     - unit-test
+    - invoke.yaml
+    - tasks
   commands:
     - python -c "import PySpice; print(PySpice.__version__)"
     - pytest unit-test
