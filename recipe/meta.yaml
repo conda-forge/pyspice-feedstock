@@ -1,5 +1,5 @@
 {% set name = "PySpice" %}
-{% set version = "1.4.3-beta0" %}
+{% set version = "1.4.3_beta0" %}
 {% set sha256 = "b5f1b239b31b7bb9029ff9276c8fafae1904b68f70cb5a809e01570ba846e9db" %}
 
 package:
