@@ -66,6 +66,7 @@ test:
     - setx PySpiceLibraryPath %SRC_DIR%\examples\libraries  # [win]
     - setx PYTHONLEGACYWINDOWSSTDIO utf_8  # [win]
     - setx PYTHONIOENCODING utf_8  # [win]
+    - chcp 65001  # [win]
     - invoke test.run-examples
 
     #! - conda install --yes -c fabricesalvaire pyterate
