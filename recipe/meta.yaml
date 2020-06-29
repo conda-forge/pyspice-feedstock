@@ -12,7 +12,7 @@ source:
 
   # Quick test for 1.4.3, even though there's no tag yet.
   git_url: https://github.com/FabriceSalvaire/PySpice
-  git_rev: e3bc718
+  git_rev: 5f6eb44
 
 build:
   number: 0
