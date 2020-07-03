@@ -1,18 +1,16 @@
 {% set name = "PySpice" %}
-{% set version = "1.4.3_beta0" %}
-{% set sha256 = "" %}
+{% set version = "1.4.3" %}
+{% set sha256 = "3747030256fc7326fdaf5009a5d1cb23e464beca821d745b4613587fbbea9c45" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  # url: https://github.com/FabriceSalvaire/PySpice/archive/v{{ version }}.tar.gz
-  # sha256: {{ sha256 }}
-
-  # Quick test for 1.4.3, even though there's no tag yet.
-  git_url: https://github.com/FabriceSalvaire/PySpice
-  git_rev: bd36979
+  url: https://github.com/FabriceSalvaire/PySpice/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  # git_url: https://github.com/FabriceSalvaire/PySpice
+  # git_rev:
 
 build:
   number: 0
@@ -72,11 +70,6 @@ test:
     #! - conda install --yes -c fabricesalvaire pyterate
     #! - pyterate --config=%SRC_DIR%\examples\Settings.py --only-run  # [win]
     #! - PySpiceLogLevel=DEBUG PySpiceLibraryPath=$PWD/examples/libraries pyterate --config=./examples/Settings.py --only-run  # [unix]
-
-    # py3.6 TypeError: __init__() got an unexpected keyword argument 'capture_output'
-    # can test env CI azure
-    # OSX: examples/ngspice-shared/ngspice-interpreter.py
-    #   Error: ngspice.dll cannot recover and awaits to be detached
 
 about:
   home: https://pyspice.fabrice-salvaire.fr
