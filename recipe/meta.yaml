@@ -13,7 +13,7 @@ source:
   # git_rev:
 
 build:
-  number: 2
+  number: 3
   script:
     # Note: On Windows, pip handles console_scripts in a strange way, so we can't use it.
     #- {{ PYTHON }} -m pip install . -vv
