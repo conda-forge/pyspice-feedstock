@@ -17,7 +17,7 @@ source:
     - patches/matplotlib-3.4-api.patch
 
 build:
-  number: 0
+  number: 1
   script:
     # Note: On Windows, pip handles console_scripts in a strange way, so we can't use it.
     #- {{ PYTHON }} -m pip install . -vv
