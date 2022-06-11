@@ -30,11 +30,15 @@ REM ============================================================================
 
 set SPICE64_DLL_DIR=%PREFIX%\lib\site-packages\PySpice\Spice\NgSpice\Spice64_dll
 md %SPICE64_DLL_DIR%
-cd %SPICE64_DLL_DIR%
+
 REM Due to UAC, Administrator cannot create link
+REM cd %SPICE64_DLL_DIR%
 REM mklink /d dll-vs ..\..\..\..\..\..\bin
-xcopy ..\..\..\..\..\..\bin .\dll-vs\
-md .\share\ngspice
-xcopy /s ..\..\..\..\..\..\share\ngspice .\share\ngspice\
-md .\share\lib\ngspice
-xcopy /s ..\..\..\..\..\..\lib\ngspice .\share\lib\ngspice\
+
+md %SPICE64_DLL_DIR%\dll-vs
+md %SPICE64_DLL_DIR%\share\ngspice
+md %SPICE64_DLL_DIR%\share\lib\ngspice
+
+xcopy /s %PREFIX%\Library\bin %SPICE64_DLL_DIR%\dll-vs\
+xcopy /s %PREFIX%\Library\share\ngspice %SPICE64_DLL_DIR%\share\ngspice\
+xcopy /s %PREFIX%\Library\lib\ngspice %SPICE64_DLL_DIR%\share\lib\ngspice\
