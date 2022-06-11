@@ -1,6 +1,6 @@
 {% set name = "PySpice" %}
-{% set version = "1.4.3" %}
-{% set sha256 = "3747030256fc7326fdaf5009a5d1cb23e464beca821d745b4613587fbbea9c45" %}
+{% set version = "1.5" %}
+{% set sha256 = "9779f8d32aab078b1bc4f3b92ae72cd578a5a0fa512b3f66ec3312ca97cb6773" %}
 
 package:
   name: {{ name|lower }}
@@ -12,8 +12,12 @@ source:
   # git_url: https://github.com/FabriceSalvaire/PySpice
   # git_rev:
 
+  patches:
+    # Tiny patch to the examples to handle API change in matplotlib 3.4
+    - patches/matplotlib-3.4-api.patch
+
 build:
-  number: 2
+  number: 0
   script:
     # Note: On Windows, pip handles console_scripts in a strange way, so we can't use it.
     #- {{ PYTHON }} -m pip install . -vv
@@ -29,7 +33,7 @@ requirements:
     - cffi >=1.14
     - numpy >=1.18
     - scipy >=1.4
-    - matplotlib-base >=3.1
+    - matplotlib-base >=3.4
     - ply >=3.11
     - ngspice-lib >=32  # ???
 

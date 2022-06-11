@@ -1,0 +1,50 @@
+diff --git PySpice/Plot/BodeDiagram.py PySpice/Plot/BodeDiagram.py
+index 5d13f56..638c86d 100644
+--- PySpice/Plot/BodeDiagram.py
++++ PySpice/Plot/BodeDiagram.py
+@@ -33,7 +33,7 @@ from matplotlib import pyplot
+ 
+ def bode_diagram_gain(axe, frequency, gain, **kwargs):
+ 
+-    axe.semilogx(frequency, gain, basex=10, **kwargs)
++    axe.semilogx(frequency, gain, base=10, **kwargs)
+     axe.grid(True)
+     axe.grid(True, which='minor')
+     axe.set_xlabel("Frequency [Hz]")
+@@ -43,7 +43,7 @@ def bode_diagram_gain(axe, frequency, gain, **kwargs):
+ 
+ def bode_diagram_phase(axe, frequency, phase, **kwargs):
+ 
+-    axe.semilogx(frequency, phase, basex=10, **kwargs)
++    axe.semilogx(frequency, phase, base=10, **kwargs)
+     axe.set_ylim(-math.pi, math.pi)
+     axe.grid(True)
+     axe.grid(True, which='minor')
+diff --git examples/diode/diode-characteristic-curve.py examples/diode/diode-characteristic-curve.py
+index 4fba497..3088e02 100755
+--- examples/diode/diode-characteristic-curve.py
++++ examples/diode/diode-characteristic-curve.py
+@@ -184,8 +184,8 @@ ax2.axvspan(silicon_forward_voltage_threshold, 3, facecolor='blue', alpha=.2)
+ analysis = analyses[25]
+ static_resistance = -analysis.out / analysis.Vinput
+ dynamic_resistance = np.diff(-analysis.out) / np.diff(analysis.Vinput)
+-ax2.semilogy(analysis.out, static_resistance, basey=10)
+-ax2.semilogy(analysis.out[10:-1], dynamic_resistance[10:], basey=10)
++ax2.semilogy(analysis.out, static_resistance, base=10)
++ax2.semilogy(analysis.out[10:-1], dynamic_resistance[10:], base=10)
+ ax2.axvline(x=0, color='black')
+ ax2.axvline(x=silicon_forward_voltage_threshold, color='red')
+ ax2.axhline(y=1, color='red')
+diff --git examples/diode/zener-characteristic-curve.py examples/diode/zener-characteristic-curve.py
+index 93a2c03..b689962 100755
+--- examples/diode/zener-characteristic-curve.py
++++ examples/diode/zener-characteristic-curve.py
+@@ -61,7 +61,7 @@ ax2.grid()
+ # U = RI   R = U/I
+ dynamic_resistance = np.diff(-analysis.out) / np.diff(analysis.Vinput)
+ # ax2.plot(analysis.out[:-1], dynamic_resistance/1000)
+-ax2.semilogy(analysis.out[10:-1], dynamic_resistance[10:], basey=10)
++ax2.semilogy(analysis.out[10:-1], dynamic_resistance[10:], base=10)
+ ax2.axvline(x=0, color='black')
+ ax2.axvline(x=-5.6, color='red')
+ ax2.legend(('Dynamic Resistance',), loc=(.1,.8))
